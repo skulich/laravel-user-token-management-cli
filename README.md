@@ -66,8 +66,6 @@ php artisan user:token:list
 
 ## User Model Binding
 
-## User Model Binding
-
 If your `User` model class is not located in the `App\Models\User` namespace,
 you must bind `App\Models\User` to your implementation in the `boot()` method of `AppServiceProvider`.
 
