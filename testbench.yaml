@@ -1,0 +1,8 @@
+laravel: '@testbench'
+
+workbench:
+  install: true
+  build:
+    - create-sqlite-db
+    - db-wipe
+    - migrate-fresh

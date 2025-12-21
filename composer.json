@@ -1,0 +1,77 @@
+{
+  "name": "skulich/laravel-user-token-management-cli",
+  "description": "A Laravel package that allows managing Users and their Tokens from CLI",
+  "keywords": [
+    "laravel",
+    "user",
+    "token"
+  ],
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Siarhei Kulich",
+      "email": "siarhei.kulich@gmail.com"
+    }
+  ],
+  "require": {
+    "php": "^8.3",
+    "laravel/prompts": "^0.3.8",
+    "laravel/framework": "^12.42.0"
+  },
+  "require-dev": {
+    "larastan/larastan": "^3.8",
+    "laravel/pint": "^1.26",
+    "laravel/sanctum": "^4.2",
+    "orchestra/testbench": "^10.8",
+    "pestphp/pest": "^4.1",
+    "pestphp/pest-plugin-laravel": "^4.0",
+    "pestphp/pest-plugin-type-coverage": "^4.0",
+    "phpstan/extension-installer": "^1.4",
+    "rector/rector": "^2.2",
+    "symfony/var-dumper": "^7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "SKulich\\LaravelUserTokenManagementCli\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SKulich\\LaravelUserTokenManagementCli\\Tests\\": "tests/",
+      "Workbench\\App\\": "workbench/app/"
+    }
+  },
+  "scripts": {
+    "lint": "@php vendor/bin/pint",
+    "refactor": "@php vendor/bin/rector process",
+    "test:refactor": "@php vendor/bin/rector process --dry-run",
+    "test:lint": "@php vendor/bin/pint --test",
+    "test:types": "@php vendor/bin/phpstan analyse",
+    "test:typec": "@php vendor/bin/pest --type-coverage --min=100",
+    "test:unit": "@php vendor/bin/pest --coverage --parallel --min=100",
+    "test": [
+      "@test:refactor",
+      "@test:lint",
+      "@test:typec",
+      "@test:unit"
+    ]
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "SKulich\\LaravelUserTokenManagementCli\\Providers\\PackageServiceProvider"
+      ]
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "preferred-install": "dist",
+    "allow-plugins": {
+      "pestphp/pest-plugin": true,
+      "phpstan/extension-installer": true
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
