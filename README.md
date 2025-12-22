@@ -47,6 +47,9 @@ php artisan user:create
 
 # delete a user
 php artisan user:delete
+
+# list users
+php artisan user:list
 ```
 
 ### User Token Commands
