@@ -4,13 +4,16 @@ declare(strict_types=1);
 
 namespace SKulich\LaravelUserTokenManagementCli\Traits;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
 use RuntimeException;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\password;
 use function Laravel\Prompts\search;
+use function Laravel\Prompts\table;
 use function Laravel\Prompts\text;
 use function Laravel\Prompts\warning;
 
@@ -116,5 +119,21 @@ trait UserCommandHelpers
         }
 
         return $user;
+    }
+
+    private function printUsersTable(Collection $users): void
+    {
+        table(
+            ['Name', 'Email', 'Tokens'],
+            $users
+                ->map(function ($token) {
+                    return [
+                        'name' => str_pad(Str::limit($token->name, 21), 24),
+                        'email' => str_pad(Str::limit($token->email, 21), 24),
+                        'tokens' => str_pad(Str::limit((string) $token->tokens?->count() ?: '-', 9, ''),
+                            9, ' ', STR_PAD_LEFT),
+                    ];
+                })->toArray()
+        );
     }
 }

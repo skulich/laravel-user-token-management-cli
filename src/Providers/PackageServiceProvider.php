@@ -9,6 +9,7 @@ use SKulich\LaravelUserTokenManagementCli\Console\CreateUserCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\CreateUserTokenCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\DeleteUserCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\DeleteUserTokenCommand;
+use SKulich\LaravelUserTokenManagementCli\Console\ListUserCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\ListUserTokenCommand;
 
 final class PackageServiceProvider extends ServiceProvider
@@ -19,6 +20,7 @@ final class PackageServiceProvider extends ServiceProvider
             $this->commands([
                 CreateUserCommand::class,
                 DeleteUserCommand::class,
+                ListUserCommand::class,
             ]);
 
             if (class_exists('\Laravel\Sanctum\SanctumServiceProvider')) {
