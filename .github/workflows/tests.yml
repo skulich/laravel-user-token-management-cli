@@ -24,7 +24,7 @@ jobs:
       matrix:
         php: [ 8.3, 8.4 ]
         laravel: [ 12.* ]
-        stability: [ prefer-stable ]
+        stability: [ prefer-dist ]
 
     name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - ${{ matrix.stability }}
 
@@ -50,7 +50,7 @@ jobs:
             ${{ runner.os }}-php-${{ matrix.php }}-
 
       - name: Install dependencies
-        run: composer install --${{ matrix.stability }} --prefer-dist --no-interaction --no-progress
+        run: composer install --${{ matrix.stability }} --no-interaction --no-progress
 
       - name: Run Tests
         run: composer test
