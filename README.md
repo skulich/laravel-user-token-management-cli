@@ -1,7 +1,10 @@
 # Laravel User Token Management CLI
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/skulich/laravel-user-token-management-cli.svg?style=flat-square)](https://packagist.org/packages/skulich/laravel-user-token-management-cli)
-[![Total Downloads](https://img.shields.io/packagist/dt/skulich/laravel-user-token-management-cli.svg?style=flat-square)](https://packagist.org/packages/skulich/laravel-user-token-management-cli)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/skulich/laravel-user-token-management-cli.svg)](https://packagist.org/packages/skulich/laravel-user-token-management-cli)
+![PHP Version Require](https://img.shields.io/packagist/php-v/skulich/laravel-user-token-management-cli)
+[![Run Tests](https://github.com/skulich/laravel-user-token-management-cli/actions/workflows/tests.yml/badge.svg)](https://github.com/skulich/laravel-user-token-management-cli/actions)
+![License](https://img.shields.io/packagist/l/skulich/laravel-user-token-management-cli.svg)
+![Total Downloads](https://img.shields.io/packagist/dt/skulich/laravel-user-token-management-cli.svg)
 
 A Laravel package that lets you create and delete users and tokens from the CLI.
 
