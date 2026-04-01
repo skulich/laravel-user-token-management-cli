@@ -54,6 +54,8 @@ final class DeleteUserTokenCommand extends Command
 
         info('Tokens have been deleted successfully.');
 
+        $user->load('tokens');
+
         $this->printTokensTable($user);
 
         return self::SUCCESS;

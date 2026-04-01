@@ -44,10 +44,22 @@ it('handle token deletion', function () {
 
     expect($user->tokens()->count())->toBe(4);
 
+    $remainingTokens = collect([$token2, $token4]);
+
     $this->artisan('user:token:delete')
         ->expectsSearch('Select User:', $user->id, $user->name, [$user->id => $user->name])
         ->expectsChoice('Select Tokens:', [1, 3], $tokenList)
         ->expectsPromptsInfo('Tokens have been deleted successfully.')
+        ->expectsPromptsTable(
+            ['Name', 'Abilities'],
+            $remainingTokens
+                ->map(function ($token) {
+                    return [
+                        'name' => implode("\n", str_split(str_pad($token->name, 16), 16)),
+                        'abilities' => implode("\n", str_split(str_pad(implode(', ', $token->abilities), 41), 41)),
+                    ];
+                })->toArray()
+        )
         ->assertSuccessful();
 
     expect($user->tokens()->count())->toBe(2);
