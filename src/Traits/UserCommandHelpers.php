@@ -126,11 +126,11 @@ trait UserCommandHelpers
         table(
             ['Name', 'Email', 'Tokens'],
             $users
-                ->map(function ($token) {
+                ->map(function ($user) {
                     return [
-                        'name' => str_pad(Str::limit($token->name, 21), 24),
-                        'email' => str_pad(Str::limit($token->email, 21), 24),
-                        'tokens' => str_pad(Str::limit((string) $token->tokens?->count() ?: '-', 9, ''),
+                        'name' => str_pad(Str::limit($user->name, 21), 24),
+                        'email' => str_pad(Str::limit($user->email, 21), 24),
+                        'tokens' => str_pad(Str::limit((string) $user->tokens?->count() ?: '-', 9, ''),
                             9, ' ', STR_PAD_LEFT),
                     ];
                 })->toArray()
