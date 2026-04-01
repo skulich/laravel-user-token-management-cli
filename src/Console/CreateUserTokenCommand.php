@@ -6,6 +6,7 @@ namespace SKulich\LaravelUserTokenManagementCli\Console;
 
 use Illuminate\Console\Command;
 use Laravel\Prompts\Concerns\Colors;
+use Laravel\Prompts\Concerns\Truncation;
 use Laravel\Prompts\Themes\Default\Concerns\DrawsBoxes;
 use Laravel\Sanctum\NewAccessToken;
 use SKulich\LaravelUserTokenManagementCli\Traits\TokenCommandHelpers;
@@ -15,7 +16,7 @@ use function Laravel\Prompts\info;
 
 final class CreateUserTokenCommand extends Command
 {
-    use Colors, DrawsBoxes, TokenCommandHelpers, UserCommandHelpers;
+    use Colors, DrawsBoxes, TokenCommandHelpers, Truncation, UserCommandHelpers;
 
     /**
      * @var string
