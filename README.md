@@ -42,7 +42,7 @@ composer require skulich/laravel-user-token-management-cli
 
 ## Usage
 
-The package provides five Artisan commands to manage users and their tokens.
+The package provides six Artisan commands to manage users and their tokens.
 
 ### User Commands
 
@@ -86,7 +86,7 @@ class AppServiceProvider extends ServiceProvider
 {
     public function boot(): void
     {
-        app()->bind('\App\Models\User', fn () => resolve('\App\User'), true);
+        app()->bind('\App\Models\User', fn () => resolve('\App\User'));
     }
 }
 ```
