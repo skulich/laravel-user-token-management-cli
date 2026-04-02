@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Password;
+use Laravel\Sanctum\HasApiTokens;
 use RuntimeException;
 
 use function Laravel\Prompts\error;
@@ -35,7 +36,7 @@ trait UserCommandHelpers
 
     private function isUserModelTokenable(): bool
     {
-        if (! in_array('Laravel\Sanctum\HasApiTokens', class_uses_recursive($this->getUserModelClass()))) {
+        if (! in_array(HasApiTokens::class, class_uses_recursive($this->getUserModelClass()))) {
             warning('User Model is not tokenable.');
 
             return false;
@@ -54,7 +55,7 @@ trait UserCommandHelpers
             placeholder: 'admin',
             validate: ['name' => 'required|min:2|max:255'],
             hint: 'Minimum 2 characters.',
-            transform: fn (string $value) => trim($value),
+            transform: fn (string $value): string => trim($value),
         );
     }
 
@@ -95,8 +96,8 @@ trait UserCommandHelpers
             label: 'Select User:',
             options: fn (string $value): array => $value !== ''
                 ? $model::query()
-                    ->whereLike('name', "%{$value}%")
-                    ->orWhereLike('email', "%{$value}%")
+                    ->whereLike('name', sprintf('%%%s%%', $value))
+                    ->orWhereLike('email', sprintf('%%%s%%', $value))
                     ->pluck('name', 'id')
                     ->all()
                 : [],
@@ -126,14 +127,12 @@ trait UserCommandHelpers
         table(
             ['Name', 'Email', 'Tokens'],
             $users
-                ->map(function ($user) {
-                    return [
-                        'name' => str_pad(Str::limit($user->name, 21), 24),
-                        'email' => str_pad(Str::limit($user->email, 21), 24),
-                        'tokens' => str_pad(Str::limit((string) $user->tokens?->count() ?: '-', 9, ''),
-                            9, ' ', STR_PAD_LEFT),
-                    ];
-                })->toArray()
+                ->map(fn ($user): array => [
+                    'name' => str_pad(Str::limit($user->name, 21), 24),
+                    'email' => str_pad(Str::limit($user->email, 21), 24),
+                    'tokens' => str_pad(Str::limit((string) $user->tokens?->count() ?: '-', 9, ''),
+                        9, ' ', STR_PAD_LEFT),
+                ])->toArray()
         );
     }
 }

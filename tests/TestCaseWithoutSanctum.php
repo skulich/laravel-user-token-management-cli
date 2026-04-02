@@ -8,6 +8,7 @@ use Orchestra\Testbench\Attributes\WithEnv;
 use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\TestCase as BaseTestCase;
 use SKulich\LaravelUserTokenManagementCli\Providers\PackageServiceProvider;
+use Workbench\App\Models\UserWithoutSanctum;
 
 #[WithMigration]
 #[WithEnv('DB_CONNECTION', 'testing')]
@@ -27,7 +28,7 @@ abstract class TestCaseWithoutSanctum extends BaseTestCase
     {
         parent::setUp();
 
-        app()->bind('\App\Models\User', fn () => resolve('\Workbench\App\Models\UserWithoutSanctum'));
+        app()->bind('\App\Models\User', fn () => resolve(UserWithoutSanctum::class));
     }
 
     protected function getPackageProviders($app): array

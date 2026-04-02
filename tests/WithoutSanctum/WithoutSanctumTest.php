@@ -1,19 +1,21 @@
 <?php
 
-it('check if user model is properly configured', function () {
-    expect('Laravel\Sanctum\HasApiTokens')
+use Laravel\Sanctum\HasApiTokens;
+
+it('check if user model is properly configured', function (): void {
+    expect(HasApiTokens::class)
         ->not->toBeIn(class_uses_recursive($this->getUserModelClass()));
 });
 
-it('check if user:* commands exist', function () {
+it('check if user:* commands exist', function (): void {
     $this->artisan('list user')
         ->expectsOutputToContain('user:create')
         ->expectsOutputToContain('user:delete')
         ->assertSuccessful();
 });
 
-it('handle *:* commands exception case', function () {
-    app()->bind('\App\Models\User', fn () => new stdClass);
+it('handle *:* commands exception case', function (): void {
+    app()->bind('\App\Models\User', fn (): stdClass => new stdClass);
 
     $this->artisan('user:create');
 })->throws(RuntimeException::class,

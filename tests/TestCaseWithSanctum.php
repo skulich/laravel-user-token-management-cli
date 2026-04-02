@@ -7,6 +7,7 @@ use Laravel\Sanctum\SanctumServiceProvider;
 use Orchestra\Testbench\Attributes\WithEnv;
 use Orchestra\Testbench\Attributes\WithMigration;
 use SKulich\LaravelUserTokenManagementCli\Providers\PackageServiceProvider;
+use Workbench\App\Models\UserWithSanctum;
 
 #[WithMigration]
 #[WithEnv('DB_CONNECTION', 'testing')]
@@ -18,9 +19,10 @@ abstract class TestCaseWithSanctum extends TestCaseWithoutSanctum
     {
         parent::setUp();
 
-        app()->bind('\App\Models\User', fn () => resolve('\Workbench\App\Models\UserWithSanctum'));
+        app()->bind('\App\Models\User', fn () => resolve(UserWithSanctum::class));
     }
 
+    #[\Override]
     protected function getPackageProviders($app): array
     {
         return [
@@ -29,6 +31,7 @@ abstract class TestCaseWithSanctum extends TestCaseWithoutSanctum
         ];
     }
 
+    #[\Override]
     protected function defineDatabaseMigrations(): void
     {
         $this->loadLaravelMigrations();

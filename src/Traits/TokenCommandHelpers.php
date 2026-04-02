@@ -22,7 +22,7 @@ trait TokenCommandHelpers
             placeholder: 'production',
             validate: ['name' => 'required|min:2|max:64'],
             hint: 'Minimum 2 characters.',
-            transform: fn (string $value) => trim($value),
+            transform: fn (string $value): string => trim($value),
         );
     }
 
@@ -42,12 +42,10 @@ trait TokenCommandHelpers
         table(
             ['Name', 'Abilities'],
             $user->tokens
-                ->map(function ($token) {
-                    return [
-                        'name' => implode("\n", str_split(str_pad($token->name, 16), 16)),
-                        'abilities' => implode("\n", str_split(str_pad(implode(', ', $token->abilities), 41), 41)),
-                    ];
-                })->toArray()
+                ->map(fn ($token): array => [
+                    'name' => implode("\n", str_split(str_pad((string) $token->name, 16), 16)),
+                    'abilities' => implode("\n", str_split(str_pad(implode(', ', $token->abilities), 41), 41)),
+                ])->toArray()
         );
     }
 }

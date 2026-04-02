@@ -1,6 +1,6 @@
 <?php
 
-beforeEach(function () {
+beforeEach(function (): void {
     $model = $this->getUserModelClass();
 
     $user = new $model;
@@ -10,7 +10,7 @@ beforeEach(function () {
     $user->save();
 });
 
-it('handle token creation', function () {
+it('handle token creation', function (): void {
     $model = $this->getUserModelClass();
     $user = $model::find(1);
 

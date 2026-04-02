@@ -1,6 +1,6 @@
 <?php
 
-beforeEach(function () {
+beforeEach(function (): void {
     $model = $this->getUserModelClass();
 
     $user = new $model;
@@ -10,7 +10,7 @@ beforeEach(function () {
     $user->save();
 });
 
-it('handle token deletion', function () {
+it('handle token deletion', function (): void {
     $model = $this->getUserModelClass();
     $user = $model::find(1);
 
@@ -53,12 +53,10 @@ it('handle token deletion', function () {
         ->expectsPromptsTable(
             ['Name', 'Abilities'],
             $remainingTokens
-                ->map(function ($token) {
-                    return [
-                        'name' => implode("\n", str_split(str_pad($token->name, 16), 16)),
-                        'abilities' => implode("\n", str_split(str_pad(implode(', ', $token->abilities), 41), 41)),
-                    ];
-                })->toArray()
+                ->map(fn ($token): array => [
+                    'name' => implode("\n", str_split(str_pad((string) $token->name, 16), 16)),
+                    'abilities' => implode("\n", str_split(str_pad(implode(', ', $token->abilities), 41), 41)),
+                ])->toArray()
         )
         ->assertSuccessful();
 

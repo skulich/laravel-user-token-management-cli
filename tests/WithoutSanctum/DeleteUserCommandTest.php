@@ -1,6 +1,6 @@
 <?php
 
-beforeEach(function () {
+beforeEach(function (): void {
     $model = $this->getUserModelClass();
 
     $user = new $model;
@@ -10,7 +10,7 @@ beforeEach(function () {
     $user->save();
 });
 
-it('handles user deletion', function () {
+it('handles user deletion', function (): void {
     $model = $this->getUserModelClass();
 
     $user = $model::find(1);
@@ -23,12 +23,12 @@ it('handles user deletion', function () {
     $this->assertModelMissing($user);
 });
 
-it('handles user deletion failure cases', function () {
+it('handles user deletion failure cases', function (): void {
     $model = $this->getUserModelClass();
 
     $user = $model::find(1);
 
-    $model::deleting(fn () => false);
+    $model::deleting(fn (): false => false);
 
     $this->artisan('user:delete')
         ->expectsSearch('Select User:', 0, $user->name, [$user->id => $user->name])

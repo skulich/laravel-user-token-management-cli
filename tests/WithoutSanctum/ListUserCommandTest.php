@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Str;
 
-beforeEach(function () {
+beforeEach(function (): void {
     $model = $this->getUserModelClass();
 
     $user1 = new $model;
@@ -18,7 +18,7 @@ beforeEach(function () {
     $user2->save();
 });
 
-it('handle user listing', function () {
+it('handle user listing', function (): void {
     $model = $this->getUserModelClass();
 
     $return = [
@@ -39,7 +39,7 @@ it('handle user listing', function () {
         ->assertSuccessful();
 });
 
-it('handle user listing failure case', function () {
+it('handle user listing failure case', function (): void {
     $model = $this->getUserModelClass();
 
     $model::find(1)->delete();

@@ -1,6 +1,6 @@
 <?php
 
-it('handles user creation', function () {
+it('handles user creation', function (): void {
     $model = $this->getUserModelClass();
 
     $this->artisan('user:create')
@@ -38,10 +38,10 @@ it('handles user creation', function () {
         ->and($user->email)->toBe('test@example.com');
 });
 
-it('handles user creation failure cases', function () {
+it('handles user creation failure cases', function (): void {
     $model = $this->getUserModelClass();
 
-    $model::saving(fn () => false);
+    $model::saving(fn (): false => false);
 
     $this->artisan('user:create')
         ->expectsQuestion('User Name:', 'Test User') // Ok

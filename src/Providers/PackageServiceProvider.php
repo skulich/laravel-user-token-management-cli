@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace SKulich\LaravelUserTokenManagementCli\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Sanctum\SanctumServiceProvider;
 use SKulich\LaravelUserTokenManagementCli\Console\CreateUserCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\CreateUserTokenCommand;
 use SKulich\LaravelUserTokenManagementCli\Console\DeleteUserCommand;
@@ -23,7 +24,7 @@ final class PackageServiceProvider extends ServiceProvider
                 ListUserCommand::class,
             ]);
 
-            if (class_exists('\Laravel\Sanctum\SanctumServiceProvider')) {
+            if (class_exists(SanctumServiceProvider::class)) {
                 $this->commands([
                     CreateUserTokenCommand::class,
                     DeleteUserTokenCommand::class,
@@ -33,6 +34,7 @@ final class PackageServiceProvider extends ServiceProvider
         }
     }
 
+    #[\Override]
     public function register(): void
     {
         //

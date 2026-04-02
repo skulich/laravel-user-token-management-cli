@@ -13,7 +13,8 @@ use function Laravel\Prompts\warning;
 
 final class DeleteUserTokenCommand extends Command
 {
-    use TokenCommandHelpers, UserCommandHelpers;
+    use TokenCommandHelpers;
+    use UserCommandHelpers;
 
     /**
      * @var string

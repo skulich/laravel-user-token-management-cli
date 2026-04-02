@@ -16,7 +16,11 @@ use function Laravel\Prompts\info;
 
 final class CreateUserTokenCommand extends Command
 {
-    use Colors, DrawsBoxes, TokenCommandHelpers, Truncation, UserCommandHelpers;
+    use Colors;
+    use DrawsBoxes;
+    use TokenCommandHelpers;
+    use Truncation;
+    use UserCommandHelpers;
 
     /**
      * @var string

@@ -1,6 +1,6 @@
 <?php
 
-beforeEach(function () {
+beforeEach(function (): void {
     $model = $this->getUserModelClass();
 
     $user = new $model;
@@ -12,7 +12,7 @@ beforeEach(function () {
     $user->createToken('Token Name');
 });
 
-it('handle user listing', function () {
+it('handle user listing', function (): void {
     $return = [
         [
             'name' => str_pad('Test User', 24),
