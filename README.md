@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/skulich/laravel-user-token-management-cli.svg)](https://packagist.org/packages/skulich/laravel-user-token-management-cli)
 ![PHP Version Require](https://img.shields.io/packagist/php-v/skulich/laravel-user-token-management-cli)
-![Laravel Version](https://img.shields.io/badge/laravel-%5E12.0%20-red?logo=laravel)
+![Laravel Version](https://img.shields.io/badge/laravel-%5E12.42%20%7C%7C%20%5E13.0-red?logo=laravel)
 [![Run Tests](https://github.com/skulich/laravel-user-token-management-cli/actions/workflows/tests.yml/badge.svg)](https://github.com/skulich/laravel-user-token-management-cli/actions)
 ![Code Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen)
 ![License](https://img.shields.io/packagist/l/skulich/laravel-user-token-management-cli.svg)

@@ -17,13 +17,13 @@
   "require": {
     "php": "^8.3",
     "laravel/prompts": "^0.3.8",
-    "laravel/framework": "^12.42.0"
+    "laravel/framework": "^12.42 || ^13.0"
   },
   "require-dev": {
     "larastan/larastan": "^3.8",
     "laravel/pint": "^1.26",
     "laravel/sanctum": "^4.2",
-    "orchestra/testbench": "^10.8",
+    "orchestra/testbench": "^10.8 || ^11.0",
     "pestphp/pest": "^4.1",
     "pestphp/pest-plugin-laravel": "^4.0",
     "pestphp/pest-plugin-type-coverage": "^4.0",
@@ -55,6 +55,14 @@
       "@test:lint",
       "@test:typec",
       "@test:unit"
+    ],
+    "test12": [
+      "@composer update --with laravel/framework:^12.42 --no-interaction --no-progress",
+      "@test"
+    ],
+    "test13": [
+      "@composer update --with laravel/framework:^13.0 --no-interaction --no-progress",
+      "@test"
     ]
   },
   "extra": {
